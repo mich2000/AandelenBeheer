@@ -1,0 +1,3 @@
+﻿Bronnen van zaken die ik heb gebruikt, maar die ik niet zelf heb geschreven.
+CSS voor de opmaake van de markdown: "https://github.com/markdowncss/air/blob/master/css/air.css"
+Library voor het converteren van Markdown naar Html: "https://github.com/lunet-io/markdig";

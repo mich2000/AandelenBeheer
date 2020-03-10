@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="WpfAandelenBeheer.Views.RapporteringView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="BorderBrush" Value="DarkBlue"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <Label Content="Rapportering" Style="{StaticResource NameBaseControl}"></Label>
+        <ScrollViewer Height="300">
+            <TextBlock Text="{Binding MarkDownText,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <TextBlock.ToolTip>
+                    <TextBlock Text="Markdown text dat opgeslagen kan zijn."></TextBlock>
+                </TextBlock.ToolTip>
+            </TextBlock>
+        </ScrollViewer>
+        <CheckBox Grid.Column="0" IsChecked="{Binding IncludeAandelen}" Content="Aandelen in het rapport?"></CheckBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <CheckBox Grid.Column="0" Grid.Row="0" IsChecked="{Binding SaveHtml}" Content="Save HTML"></CheckBox>
+            <CheckBox Grid.Column="1" Grid.Row="0"  IsChecked="{Binding SaveMd}" Content="Save Markdown"></CheckBox>
+            <Button Grid.Column="0" Grid.Row="1" Content="Refresh MarkDown preview" Command="{Binding CmdRefreshPreview}"></Button>
+            <Button Grid.Column="1" Grid.Row="1" Content="Save HTML/MD" Command="{Binding CmdSaveFileMdHmtl}"></Button>
+        </Grid>
+    </StackPanel>
+</UserControl>

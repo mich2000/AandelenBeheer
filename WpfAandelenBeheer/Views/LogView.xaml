@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WpfAandelenBeheer.Views.LogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock Text="{Binding Titel}" FontSize="16" FontWeight="Bold" TextAlignment="Center"></TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Content="Highest Date" Command="{Binding BtnHighDate}"></Button>
+            <Button Grid.Column="1" Grid.Row="0" Content="Lowest Date" Command="{Binding BtnLowDate}"></Button>
+            <Label Content="Filter op log soort: " Grid.Column="0" Grid.Row="1"></Label>
+            <ComboBox Text="Filter op log soort: " ItemsSource="{Binding LogSoorten}"
+                      SelectedItem="{Binding SelectedLogKind,UpdateSourceTrigger=PropertyChanged}"
+                      Grid.Column="1" Grid.Row="1"></ComboBox>
+            <Label Content="Filter op beschrijvingen: " Grid.Column="0" Grid.Row="2"></Label>
+            <TextBox Text="{Binding InputSearch, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                     Grid.Column="1" Grid.Row="2"></TextBox>
+        </Grid>
+        <ListBox ItemsSource="{Binding LogView,UpdateSourceTrigger=PropertyChanged}" Margin="3" Padding="3"  Height="300"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding DateLog}" FontSize="16" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding}" TextWrapping="Wrap" ></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="0" IsChecked="{Binding SaveHTML,UpdateSourceTrigger=PropertyChanged}" Content="Save HTML"></CheckBox>
+            <CheckBox Grid.Column="1" IsChecked="{Binding SaveMd,UpdateSourceTrigger=PropertyChanged}" Content="Save Markdown"></CheckBox>
+            <Button Grid.Column="2"  Content="Save HTML/MD" Command="{Binding CmdSaveFileMdHmtl}"></Button>
+        </Grid>
+    </StackPanel>
+</UserControl>
